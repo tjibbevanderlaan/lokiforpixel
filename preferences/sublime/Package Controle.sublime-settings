@@ -1,0 +1,10 @@
+{
+        "installed_packages":
+        [
+                "Package Control",
+                "SublimeLinter",
+                "SublimeLinter-contrib-eslint",
+                "DocBlockr",
+                "HTML/CSS/JS Prettify"
+        ]
+}
