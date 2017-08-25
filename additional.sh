@@ -68,27 +68,31 @@ sudo apt-get -y -qq install -y nodejs
 
 # Correct NPM permissions according to option 2
 # See docs: https://docs.npmjs.com/getting-started/fixing-npm-permissions
-mkdir ~/.npm-global
+mkdir /home/$USER/.npm-global
 npm config set prefix '~/.npm-global'
-echo "export PATH=~/.npm-global/bin:$PATH" ~/.profile
-source ~/.profile
+echo "export PATH=~/.npm-global/bin:$PATH" /home/$USER/.profile
+source /home/$USER/.profile
 
 # Sublime Text 3 + user packages
 sudo apt-add-repository -y ppa:webupd8team/sublime-text-3
 sudo apt-get -qq update
 sudo apt-get -y -qq install sublime-text-installer
-mkdir -p "~/.config/sublime-text-3/Installed Packages/"
-sudo cp "preferences/sublime/Package Controle.sublime-settings" "~/.config/sublime-text-3/Installed Packages/"
+mkdir -p "/home/$USER/.config/sublime-text-3/Installed Packages"
+cd /tmp/lokiforpixel
+sudo cp "preferences/sublime/Package Controle.sublime-settings" "/home/$USER/.config/sublime-text-3/Installed Packages/"
 
 # Arc dark theme for sublime + monokai
 # https://github.com/GarthTheChicken/Sublime-Text-3-Arc-Dark-theme
 cd /tmp/lokiforpixel
 git clone "https://github.com/GarthTheChicken/Sublime-Text-3-Arc-Dark-theme"
-mkdir -p "~/.config/sublime-text-3/Packages/User/"
-sudo cp -r Sublime-Text-3-Arc-Dark-theme/Arc-Dark ~/.config/sublime-text-3/Packages/User/
-sudo cp Sublime-Text-3-Arc-Dark-theme/Widget.sublime-settings ~/.config/sublime-text-3/Packages/User/
-sudo cp preferences/sublime/Arc-Monokai.tmTheme ~/.config/sublime-text-3/Packages/User/Arc-Dark/schemes/
-sudo cp preferences/sublime/Preferences.sublime-settings ~/.config/sublime-text-3/Packages/User/
+mkdir -p /home/$USER/.config/sublime-text-3/Packages/User/
+sudo cp -r Sublime-Text-3-Arc-Dark-theme/Arc-Dark /home/$USER/.config/sublime-text-3/Packages/User/
+sudo cp Sublime-Text-3-Arc-Dark-theme/Widget.sublime-settings /home/$USER/.config/sublime-text-3/Packages/User/
+sudo cp preferences/sublime/Arc-Monokai.tmTheme /home/$USER/.config/sublime-text-3/Packages/User/Arc-Dark/schemes/
+sudo cp preferences/sublime/Preferences.sublime-settings /home/$USER/.config/sublime-text-3/Packages/User/
+
+# Set arc-dark as default theme without using elementary-tweaks
+gsettings set org.gnome.desktop.interface gtk-theme "Arc-Dark"
 
 # You can run the chroot from the ChromeOs shell with the command:
 # sudo enter-chroot -n xiwi -X xorg startelementary
